@@ -18,3 +18,10 @@ jobs:
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+      - name: Run script file
+      - uses: actions/checkout@v2
+        run: |
+           # chmod +x ./public/scripts/test.sh
+           # ./public/scripts/test.sh
+           echo "Hello Runner" >> echo.txt
+        shell: zsh
