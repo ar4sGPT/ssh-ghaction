@@ -15,10 +15,9 @@ jobs:
     runs-on: macos-13
     steps:
       # Enable tmate debugging of manually-triggered workflows if the input option was provided
-      - name: Setup tmate session
+      - name: Setup tmate session and run script file
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
-      - name: Run script file
       - uses: actions/checkout@v2
         run: |
            # chmod +x ./public/scripts/test.sh
