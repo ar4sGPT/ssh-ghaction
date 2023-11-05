@@ -8,19 +8,23 @@ on:
         default: true
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+  
+  NETDATA_TOKEN: ${{ secrets.NETDATA_TOKEN }}
+  NETDATA_ROOM:  ${{ secrets.NETDATA_ROOM }} 
+  NETDATA_URL:   ${{ secrets.NETDATA_URL }} 
 
 jobs:
   build:
     runs-on: macos-13
     steps:
       # Enable tmate debugging of manually-triggered workflows if the input option was provided
-      - name: Setup tmate session and run script file
+      - name: Stage Environment
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
       - uses: actions/checkout@v2
         run: |
-           # chmod +x ./public/scripts/test.sh
-           # ./public/scripts/test.sh
-           echo "Hello Runner" >> echo.txt
+             chmod +x ./public/scripts/kickstart.sh \
+             ./public/scripts/kickstart.sh          \
+             echo "Hello Runner" >> echo.txt        \
         shell: zsh
